@@ -20,7 +20,7 @@ BookList.propTypes = {
       title: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
       progress: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   onDelete: PropTypes.func.isRequired, // Assuming onDelete is a function that removes a book by ID
 };
