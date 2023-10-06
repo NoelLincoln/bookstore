@@ -1,3 +1,27 @@
 .App {
   text-align: center;
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 87.5rem;
+  height: 5.938rem;
+  margin: 0 0 2.375rem;
+  padding: 1.438rem 6.188rem 1.688rem 6.25rem;
+  background-color: var(--white-two);
+}
+
+.title-links {
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+  gap: 1rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+}
