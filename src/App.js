@@ -11,13 +11,13 @@ const App = () => (
   </>
 );
 
-<BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Home />}>
-      <Route index element={<Home />} />
-    </Route>
-    <Route path="/categories" element={<Categories />} />
-  </Routes>
-</BrowserRouter>;
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />}>
+        <Route index element={<Home />} />
+      </Route>
+      <Route path="/categories" element={<Categories />} />
+    </Routes>
+  </BrowserRouter>;
 
 export default App;
