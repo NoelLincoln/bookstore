@@ -2,8 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Categories from './components/Categories';
 import Header from './components/Header';
-import BookList from './components/BookList';
-import AddBook from './components/AddBook'; // Corrected the import statement
+import Books from './components/Books';
 import './App.css';
 
 const App = () => {
@@ -40,9 +39,10 @@ const App = () => {
         <Route path="/categories" element={<Categories />} />
         <Route
           path="/"
-          element={<BookList books={books} onDelete={onDelete} />}
+          element={
+            <Books books={books} onDelete={onDelete} onAddBook={addBook} />
+          }
         />
-        <Route path="/add-book" element={<AddBook onAddBook={addBook} />} />
       </Routes>
     </>
   );

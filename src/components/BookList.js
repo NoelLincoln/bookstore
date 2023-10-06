@@ -1,14 +1,12 @@
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import BookItem from './BookItem';
-import AddBook from './AddBook';
 
 const BookList = ({ books, onDelete }) => (
   <div className="book-list">
     {books.map((book) => (
       <BookItem key={book.id} book={book} onDelete={() => onDelete(book.id)} />
     ))}
-    <AddBook />
   </div>
 );
 
