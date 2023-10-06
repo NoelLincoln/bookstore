@@ -8,7 +8,6 @@ nav {
   width: 87.5rem;
   height: 5.938rem;
   margin: 0 0 2.375rem;
-  padding: 1.438rem 6.188rem 1.688rem 6.25rem;
   background-color: var(--white-two);
 }
 
@@ -24,4 +23,11 @@ nav {
 
 .nav-links li a {
   text-decoration: none;
+}
+
+.book-item {
+  display: flex;
+  margin: 0 0 2.375rem;
+  border: 1px solid lightgrey;
+  justify-content: space-between;
 }
