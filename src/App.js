@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Categories from './components/Categories';
 import Header from './components/Header';
 import BookList from './components/BookList';
-import AddBooK from './components/AddBook';
+import AddBook from './components/AddBook'; // Corrected the import statement
 import './App.css';
 
 const App = () => {
@@ -23,6 +23,7 @@ const App = () => {
       progress: '0%',
     },
   ]);
+
   const addBook = (newBook) => {
     const updatedBooks = [...books, newBook];
     setBooks(updatedBooks);
@@ -35,19 +36,16 @@ const App = () => {
   return (
     <>
       <Header />
-      <BookList books={books} onDelete={onDelete} />
-      <AddBooK onAddBook={addBook} />
+      <Routes>
+        <Route path="/categories" element={<Categories />} />
+        <Route
+          path="/"
+          element={<BookList books={books} onDelete={onDelete} />}
+        />
+        <Route path="/add-book" element={<AddBook onAddBook={addBook} />} />
+      </Routes>
     </>
   );
 };
-
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<BookList />}>
-        <Route index element={<BookList />} />
-      </Route>
-      <Route path="/categories" element={<Categories />} />
-    </Routes>
-  </BrowserRouter>;
 
 export default App;
