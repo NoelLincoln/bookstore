@@ -22,7 +22,7 @@ BookList.propTypes = {
       author: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
       progress: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
 };
 
