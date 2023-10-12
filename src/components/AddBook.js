@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
-import { PropTypes } from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../redux/book/bookSlice';
 
-const AddBook = ({ onAddBook }) => {
+const AddBook = () => {
   const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
   const [category, setCategory] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddBook({ title, category });
+
+    const bookData = {
+      id: Math.random().toString(36).substr(2, 9),
+      title,
+      author,
+      category,
+    };
+
+    dispatch(addBook(bookData));
     setTitle('');
+    setAuthor('');
     setCategory('');
   };
 
@@ -23,15 +36,22 @@ const AddBook = ({ onAddBook }) => {
           onChange={(e) => setTitle(e.target.value)}
         />
 
+        <input
+          type="text"
+          placeholder="Author"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+        />
+
         <select
           id="categoryDropdown"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
           <option value="">Category</option>
-          <option value="Author 1">React</option>
-          <option value="Author 2">Data structures</option>
-          <option value="Author 3">Ruby</option>
+          <option value="React">React</option>
+          <option value="Data Structures">Data structures</option>
+          <option value="Ruby">Ruby</option>
         </select>
 
         <button type="submit">Add Book</button>
@@ -40,7 +60,4 @@ const AddBook = ({ onAddBook }) => {
   );
 };
 
-AddBook.propTypes = {
-  onAddBook: PropTypes.func.isRequired,
-};
 export default AddBook;
