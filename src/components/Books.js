@@ -18,9 +18,10 @@ const Books = () => {
 
   return (
     <>
-      <div>
+      <div className="main-container">
         <BookList booksProp={booksProp} handleRemoveItem={handleRemoveItem} />
       </div>
+      <hr />
       <AddBook addBook={addBook} />
     </>
   );

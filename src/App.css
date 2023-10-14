@@ -15,8 +15,7 @@
 nav {
   display: flex;
   background-color: white;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem 3rem 2rem 3rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -63,9 +62,11 @@ img {
 
 .book-item {
   display: flex;
+  align-items: center;
+  width: 85%;
+  margin: auto;
   background-color: white;
   padding: 1rem 2rem 1rem 2rem;
-  margin: 0 0 2.375rem;
   border: 1px solid lightgrey;
   justify-content: space-between;
 }
@@ -135,6 +136,9 @@ img {
 }
 
 .book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   margin-top: 2rem;
 }
 
@@ -156,6 +160,14 @@ img {
   color: #888;
 }
 
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: auto;
+  padding-bottom: 4rem;
+}
+
 form {
   display: flex;
   justify-content: space-between;
@@ -165,5 +177,13 @@ form {
 .title-input {
   width: 50%;
   border-radius: 4px;
+  padding: 1rem;
   border: solid 1px #e8e8e8;
+}
+
+hr {
+  margin: auto;
+  color: gray;
+  width: 85%;
+  margin-top: 2rem;
 }

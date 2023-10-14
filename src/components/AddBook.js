@@ -33,7 +33,7 @@ const AddBook = () => {
   };
 
   return (
-    <>
+    <div className="add-book-form">
       <h3 className="add-new">ADD NEW BOOK</h3>
       <form onSubmit={handleSubmit}>
         <input
@@ -57,11 +57,13 @@ const AddBook = () => {
           <option value="Ruby">Ruby</option>
         </select>
 
-        <button type="submit" className="update-progress-btn">Add Book</button>
+        <button type="submit" className="update-progress-btn">
+          Add Book
+        </button>
       </form>
 
       {error && <p className="error-message">{error}</p>}
-    </>
+    </div>
   );
 };
 
