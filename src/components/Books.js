@@ -3,7 +3,7 @@ import BookList from './BookList';
 import AddBook from './AddBook';
 
 const Books = () => {
-  const { books } = useSelector((store) => store.books);
+  const books = useSelector((store) => store.books.books);
   return (
     <div>
       <BookList books={books} />
