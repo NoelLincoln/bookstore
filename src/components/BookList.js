@@ -1,29 +1,37 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import BookItem from './BookItem';
 
-const BookList = ({ books }) => (
+const BookList = ({ booksProp, handleRemoveItem }) => (
   <div className="book-list">
-    {books.map((book) => (
-      <BookItem
-        key={book.itemId}
-        title={book.title}
-        author={book.author}
-        itemId={book.itemId}
-      />
+    {Object.keys(booksProp).map((bookId) => (
+      <div key={bookId}>
+        {booksProp[bookId].map((book) => (
+          <BookItem
+            key={book.id}
+            title={book.title}
+            author={book.author}
+            category={book.category}
+            itemId={bookId}
+            handleRemove={handleRemoveItem}
+          />
+        ))}
+      </div>
     ))}
   </div>
 );
 
 BookList.propTypes = {
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      progress: PropTypes.string.isRequired,
-    }),
+  booksProp: PropTypes.objectOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        author: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+      }),
+    ),
   ).isRequired,
+  handleRemoveItem: PropTypes.func.isRequired,
 };
 
 export default BookList;

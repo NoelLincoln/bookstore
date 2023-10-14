@@ -1,27 +1,45 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const apiUrl = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/XaAkasEPEa3m4PZe2Njk/books';
 
 const initialState = {
-  books: [
-    {
-      itemId: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      itemId: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      itemId: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
-  ],
+  books: {},
+  fetchStatus: 'idle',
+  addStatus: 'idle',
+  removeStatus: 'idle',
+  error: null,
 };
+
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
+  try {
+    const response = await axios.get(apiUrl);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
+export const addBook = createAsyncThunk('books/addBook', async (bookData) => {
+  try {
+    const response = await axios.post(apiUrl, bookData);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
+export const removeBookAsync = createAsyncThunk(
+  'books/removeBook',
+  async (itemId, { rejectWithValue }) => {
+    try {
+      await axios.delete(`${apiUrl}/${itemId}`);
+      return itemId;
+    } catch (error) {
+      return rejectWithValue('Failed to remove book');
+    }
+  },
+);
 
 const bookSlice = createSlice({
   name: 'books',
@@ -30,12 +48,42 @@ const bookSlice = createSlice({
     addBook: (state, action) => {
       state.books.push(action.payload);
     },
-    removeBook: (state, action) => {
-      const itemId = action.payload;
-      state.books = state.books.filter((book) => book.itemId !== itemId);
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        state.fetchStatus = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        state.fetchStatus = 'succeeded';
+        state.books = action.payload;
+      })
+      .addCase(fetchBooks.rejected, (state, action) => {
+        state.fetchStatus = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(addBook.fulfilled, (state, action) => {
+        state.addStatus = 'succeeded';
+        state.books[action.payload.item_id] = [action.payload];
+      })
+      .addCase(addBook.pending, (state) => {
+        state.addStatus = 'loading';
+      })
+      .addCase(addBook.rejected, (state) => {
+        state.addStatus = 'failed';
+      })
+      .addCase(removeBookAsync.fulfilled, (state, action) => {
+        state.removeStatus = 'succeeded';
+        delete state.books[action.payload];
+      })
+      .addCase(removeBookAsync.pending, (state) => {
+        state.removeStatus = 'loading';
+      })
+      .addCase(removeBookAsync.rejected, (state) => {
+        state.removeStatus = 'failed';
+      });
   },
 });
 
-export const { addBook, removeBook } = bookSlice.actions;
 export default bookSlice.reducer;
