@@ -54,6 +54,7 @@ const AddBook = () => {
           id="categoryDropdown"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          required
         >
           <option value="">Category</option>
           <option value="React">React</option>
