@@ -1,47 +1,37 @@
-import { PropTypes } from 'prop-types';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchBooks } from '../redux/book/bookSlice';
+import PropTypes from 'prop-types';
 import BookItem from './BookItem';
 
-const BookList = ({ books }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchBooks());
-  }, [dispatch]);
-
-  return (
-    <div className="book-list">
-      {Object.values(books).map((bookArray) => {
-        if (Array.isArray(bookArray)) {
-          return bookArray.map((book) => (
-            <BookItem
-              key={book.id}
-              title={book.title}
-              author={book.author}
-              itemId={book.id}
-            />
-          ));
-        }
-        return null; // Handle the case where bookArray is not an array
-      })}
-    </div>
-  );
-};
+const BookList = ({ booksProp, handleRemoveItem }) => (
+  <div className="book-list">
+    {Object.keys(booksProp).map((bookId) => (
+      <div key={bookId}>
+        {booksProp[bookId].map((book) => (
+          <BookItem
+            key={book.id}
+            title={book.title}
+            author={book.author}
+            category={book.category}
+            itemId={bookId}
+            handleRemove={handleRemoveItem}
+          />
+        ))}
+      </div>
+    ))}
+  </div>
+);
 
 BookList.propTypes = {
-  books: PropTypes.objectOf(
+  booksProp: PropTypes.objectOf(
     PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         author: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        progress: PropTypes.string.isRequired,
-      })
-    )
+        category: PropTypes.string.isRequired,
+      }),
+    ),
   ).isRequired,
+  handleRemoveItem: PropTypes.func.isRequired,
 };
 
 export default BookList;
