@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/book/bookSlice';
+import { addBook, fetchBooks } from '../redux/book/bookSlice';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [category, setCategory] = useState('');
+  const [error, setError] = useState(null); // State for error message
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const bookData = {
@@ -19,10 +20,16 @@ const AddBook = () => {
       category,
     };
 
-    dispatch(addBook(bookData));
-    setTitle('');
-    setAuthor('');
-    setCategory('');
+    try {
+      await dispatch(addBook(bookData));
+      await dispatch(fetchBooks());
+      setTitle('');
+      setAuthor('');
+      setCategory('');
+      setError(null);
+    } catch (error) {
+      setError('Error adding book: ', error.message);
+    }
   };
 
   return (
@@ -56,6 +63,8 @@ const AddBook = () => {
 
         <button type="submit">Add Book</button>
       </form>
+
+      {error && <p className="error-message">{error}</p>}
     </>
   );
 };
