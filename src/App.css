@@ -5,24 +5,46 @@
 nav {
   display: flex;
   justify-content: space-between;
-  width: 87.5rem;
-  height: 5.938rem;
-  margin: 0 0 2.375rem;
-  background-color: var(--white-two);
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  display: flex;
+  gap: 0.5rem;
+  list-style-type: none;
+}
+
+ul li {
+  text-decoration: none;
+}
+
+ul li a {
+  color: gray;
+}
+
+ul li a:hover {
+  color: #00a8ff;
+}
+
+ul li a.active {
+  color: black;
 }
 
 .title-links {
   display: flex;
+  align-items: center;
 }
 
-.nav-links {
-  display: flex;
-  list-style-type: none;
-  gap: 1rem;
+.title-links h1 {
+  color: #0290ff;
 }
 
-.nav-links li a {
-  text-decoration: none;
+img {
+  width: 30px;
 }
 
 .book-item {

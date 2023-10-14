@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import userIcon from './user.png';
 
 const Header = () => (
   <>
@@ -15,7 +16,7 @@ const Header = () => (
         </ul>
       </div>
       <div className="user-icon">
-        <p>User icon</p>
+        <img src={userIcon} alt="user icon" />
       </div>
     </nav>
   </>
