@@ -34,20 +34,14 @@ const AddBook = () => {
 
   return (
     <>
-      <h3>Add New Book</h3>
+      <h3 className="add-new">ADD NEW BOOK</h3>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Book Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="Author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          className="title-input"
         />
 
         <select
@@ -55,6 +49,7 @@ const AddBook = () => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
+          className="category"
         >
           <option value="">Category</option>
           <option value="React">React</option>
@@ -62,7 +57,7 @@ const AddBook = () => {
           <option value="Ruby">Ruby</option>
         </select>
 
-        <button type="submit">Add Book</button>
+        <button type="submit" className="update-progress-btn">Add Book</button>
       </form>
 
       {error && <p className="error-message">{error}</p>}

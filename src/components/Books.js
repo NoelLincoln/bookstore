@@ -17,10 +17,12 @@ const Books = () => {
   };
 
   return (
-    <div>
-      <BookList booksProp={booksProp} handleRemoveItem={handleRemoveItem} />
+    <>
+      <div>
+        <BookList booksProp={booksProp} handleRemoveItem={handleRemoveItem} />
+      </div>
       <AddBook addBook={addBook} />
-    </div>
+    </>
   );
 };
 
