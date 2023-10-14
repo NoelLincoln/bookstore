@@ -1,33 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
 
+.app-title {
+  font-family: 'Montserrat', sans-serif;
+}
+
 nav {
   display: flex;
+  background-color: white;
+  padding: 2rem 3rem 2rem 3rem;
   justify-content: space-between;
-  width: 87.5rem;
-  height: 5.938rem;
-  margin: 0 0 2.375rem;
-  background-color: var(--white-two);
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  display: flex;
+  gap: 0.5rem;
+  list-style-type: none;
+}
+
+ul li {
+  text-decoration: none;
+}
+
+ul li a {
+  color: gray;
+}
+
+ul li a:hover {
+  color: #00a8ff;
+}
+
+ul li a.active {
+  color: black;
 }
 
 .title-links {
   display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
-.nav-links {
-  display: flex;
-  list-style-type: none;
-  gap: 1rem;
+.title-links h1 {
+  color: #0290ff;
 }
 
-.nav-links li a {
-  text-decoration: none;
+img {
+  width: 30px;
 }
 
 .book-item {
   display: flex;
-  margin: 0 0 2.375rem;
+  align-items: center;
+  width: 85%;
+  margin: auto;
+  background-color: white;
+  padding: 1rem 2rem 1rem 2rem;
   border: 1px solid lightgrey;
   justify-content: space-between;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-title {
+  font-family: 'RobotoSlab-Bold', sans-serif;
+  font-weight: 700;
+  font-size: 1.375rem;
+  color: #121212;
+}
+
+.category {
+  font-family: 'Montserrat-Bold', sans-serif;
+  color: gray;
+  border-radius: 4px;
+  width: 30%;
+  font-size: 0.875rem;
+}
+
+.actions {
+  display: flex;
+  color: #4386bf;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.author {
+  color: lightblue;
+}
+
+.remove-btn {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.progress {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.loadingprogress {
+  width: 50px;
+  height: 50px;
+}
+
+.update-progress-btn {
+  background-color: #008cba;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 0.5rem;
+}
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.current-chapter {
+  color: gray;
+}
+
+.add-new {
+  width: auto;
+  height: 1.5rem;
+  margin: 1.813rem 32.75rem 1.188rem 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.18px;
+  color: #888;
+}
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: auto;
+  padding-bottom: 4rem;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title-input {
+  width: 50%;
+  border-radius: 4px;
+  padding: 1rem;
+  border: solid 1px #e8e8e8;
+}
+
+hr {
+  margin: auto;
+  color: gray;
+  width: 85%;
+  margin-top: 2rem;
 }

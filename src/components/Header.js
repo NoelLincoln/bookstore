@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import userIcon from './user.png';
 
 const Header = () => (
   <>
     <nav>
       <div className="title-links">
-        <h1>Bookstore CMS</h1>
+        <h1 className="app-title">Bookstore CMS</h1>
         <ul className="nav-links">
           <li>
             <NavLink to="/">Books</NavLink>
@@ -15,7 +16,7 @@ const Header = () => (
         </ul>
       </div>
       <div className="user-icon">
-        <p>User icon</p>
+        <img src={userIcon} alt="user icon" />
       </div>
     </nav>
   </>
