@@ -13,7 +13,7 @@ const AddBook = () => {
     e.preventDefault();
 
     const bookData = {
-      id: Math.random().toString(36).substr(2, 9),
+      item_id: Math.random().toString(36).substr(2, 9),
       title,
       author,
       category,
