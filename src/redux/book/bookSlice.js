@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiUrl = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/XaAkasEPEa3m4PZe2Njk/books';
+const apiUrl =
+  'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/XaAkasEPEa3m4PZe2Njk/books';
 
 const initialState = {
   books: [],
@@ -27,6 +28,18 @@ export const addBook = createAsyncThunk('books/addBook', async (bookData) => {
   }
 });
 
+export const removeBook = createAsyncThunk(
+  'books/removeBook',
+  async (bookId) => {
+    try {
+      const response = await axios.delete(`${apiUrl}/${bookId}`);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
 const bookSlice = createSlice({
   name: 'books',
   initialState,
@@ -47,6 +60,10 @@ const bookSlice = createSlice({
       })
       .addCase(addBook.fulfilled, (state, action) => {
         state.books.push(action.payload);
+      })
+      .addCase(removeBook.fulfilled, (state, action) => {
+        // Assuming action.payload contains the updated list of books
+        state.books = action.payload;
       });
   },
 });

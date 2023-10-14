@@ -13,14 +13,19 @@ const BookList = ({ books }) => {
 
   return (
     <div className="book-list">
-      {Object.values(books).map((bookArray) => bookArray.map((book) => (
-        <BookItem
-          key={book.id}
-          title={book.title}
-          author={book.author}
-          itemId={book.id}
-        />
-      )))}
+      {Object.values(books).map((bookArray) => {
+        if (Array.isArray(bookArray)) {
+          return bookArray.map((book) => (
+            <BookItem
+              key={book.id}
+              title={book.title}
+              author={book.author}
+              itemId={book.id}
+            />
+          ));
+        }
+        return null; // Handle the case where bookArray is not an array
+      })}
     </div>
   );
 };
@@ -34,8 +39,8 @@ BookList.propTypes = {
         author: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         progress: PropTypes.string.isRequired,
-      }),
-    ),
+      })
+    )
   ).isRequired,
 };
 
