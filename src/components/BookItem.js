@@ -1,7 +1,9 @@
 import { PropTypes } from 'prop-types';
 import loadimg from './load.png';
 
-const BookItem = ({ itemId, title, category, author, handleRemove }) => (
+const BookItem = ({
+  itemId, title, category, author, handleRemove,
+}) => (
   <section className="book-item">
     <div className="book-info">
       <p className="category">{category}</p>
